@@ -38,7 +38,6 @@ class NotesViewModel @Inject constructor(private val noteUseCases: NoteUseCases)
                 ) {
                     return
                 }
-
                 getNotes(event.noteOrder)
             }
             is NotesEvent.DeleteNote -> {

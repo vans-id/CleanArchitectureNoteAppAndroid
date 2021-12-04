@@ -1,9 +1,12 @@
 package com.plcoding.cleanarchitecturenoteapp.presentation.notes
 
 import androidx.compose.animation.*
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -18,8 +21,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.plcoding.cleanarchitecturenoteapp.presentation.notes.components.NoteItem
 import com.plcoding.cleanarchitecturenoteapp.presentation.notes.components.OrdersSection
+import com.plcoding.cleanarchitecturenoteapp.presentation.util.Screen
 import kotlinx.coroutines.launch
 
+@ExperimentalFoundationApi
 @ExperimentalAnimationApi
 @Composable
 fun NotesScreen(
@@ -30,10 +35,13 @@ fun NotesScreen(
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
 
+
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { },
+                onClick = {
+                    navController.navigate(Screen.AddEditNoteScreen.route)
+                },
                 backgroundColor = MaterialTheme.colors.primary
             ) {
                 Icon(
@@ -46,10 +54,10 @@ fun NotesScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(8.dp)
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().padding(8.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -83,16 +91,22 @@ fun NotesScreen(
                 )
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
-            LazyColumn(modifier = Modifier.fillMaxSize()) {
+            LazyVerticalGrid(
+                cells = GridCells.Fixed(2),
+            ) {
                 items(state.notes) { note ->
                     NoteItem(
                         note = note,
                         modifier = Modifier
                             .fillMaxWidth()
+                            .padding(8.dp)
                             .clickable {
-
+                                navController.navigate(
+                                    Screen.AddEditNoteScreen.route +
+                                            "?noteId=${note.id}&noteColor=${note.color}"
+                                )
                             },
                         onDeleteClick = {
                             viewModel.onEvent(
@@ -120,12 +134,6 @@ fun NotesScreen(
         }
     }
 }
-
-
-
-
-
-
 
 
 

@@ -1,6 +1,5 @@
 package com.plcoding.cleanarchitecturenoteapp.presentation.notes.components
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
@@ -18,6 +17,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.clipPath
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -28,11 +28,11 @@ import com.plcoding.cleanarchitecturenoteapp.feature_note.domain.model.Note
 fun NoteItem(
     note: Note,
     modifier: Modifier = Modifier,
-    cornerRadius: Dp = 10.dp,
-    cutCornerSize: Dp = 30.dp,
+    cornerRadius: Dp = 8.dp,
+    cutCornerSize: Dp = 20.dp,
     onDeleteClick: () -> Unit
 ) {
-    Box(modifier = Modifier) {
+    Box(modifier = modifier) {
         Canvas(modifier = Modifier.matchParentSize()) {
             val clipPath = Path().apply {
                 lineTo(size.width - cutCornerSize.toPx(), 0f)
@@ -72,6 +72,7 @@ fun NoteItem(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .defaultMinSize(minHeight = 160.dp)
                 .padding(16.dp)
                 .padding(end = 32.dp)
         ) {
@@ -79,7 +80,7 @@ fun NoteItem(
                 text = note.title,
                 style = MaterialTheme.typography.h6,
                 color = MaterialTheme.colors.onSurface,
-                maxLines = 2,
+                maxLines = 4,
                 overflow = TextOverflow.Ellipsis
             )
             Spacer(modifier = Modifier.height(8.dp))
@@ -87,7 +88,7 @@ fun NoteItem(
                 text = note.content,
                 style = MaterialTheme.typography.body1,
                 color = MaterialTheme.colors.onSurface,
-                maxLines = 2,
+                maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
         }
@@ -98,7 +99,8 @@ fun NoteItem(
         ) {
             Icon(
                 imageVector = Icons.Default.Delete,
-                contentDescription = "Delete"
+                contentDescription = "Delete",
+                tint = MaterialTheme.colors.onSurface
             )
         }
     }
