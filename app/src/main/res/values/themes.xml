@@ -14,13 +14,4 @@
 
     </style>
 
-    <style name="Theme.CleanArchitectureNoteApp.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="Theme.CleanArchTodoAppPrep.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.CleanArchTodoAppPrep.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
 </resources>

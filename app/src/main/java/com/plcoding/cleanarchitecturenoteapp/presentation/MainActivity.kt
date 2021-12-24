@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.navigation.NavType
@@ -18,8 +19,9 @@ import com.plcoding.cleanarchitecturenoteapp.ui.theme.CleanArchitectureNoteAppTh
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
+@ExperimentalAnimationApi
+@ExperimentalFoundationApi
 class MainActivity : ComponentActivity() {
-    @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
