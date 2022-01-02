@@ -18,9 +18,9 @@ import com.plcoding.cleanarchitecturenoteapp.presentation.util.Screen
 import com.plcoding.cleanarchitecturenoteapp.ui.theme.CleanArchitectureNoteAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 @ExperimentalAnimationApi
 @ExperimentalFoundationApi
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

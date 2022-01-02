@@ -16,9 +16,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.plcoding.cleanarchitecturenoteapp.core.util.TestTags
 import com.plcoding.cleanarchitecturenoteapp.presentation.notes.components.NoteItem
 import com.plcoding.cleanarchitecturenoteapp.presentation.notes.components.OrdersSection
 import com.plcoding.cleanarchitecturenoteapp.presentation.util.Screen
@@ -46,7 +48,7 @@ fun NotesScreen(
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
-                    contentDescription = "Add Note"
+                    contentDescription = "Add"
                 )
             }
         }, scaffoldState = scaffoldState
@@ -86,7 +88,8 @@ fun NotesScreen(
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp),
+                        .padding(16.dp)
+                        .testTag(TestTags.ORDER_SECTION),
                     noteOrder = state.noteOrder
                 )
             }
